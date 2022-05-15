@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="spa/assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="spa/assets/styles/style.css"/>
+    <link
+            rel="stylesheet"
+            href="spa/assets/styles/fontawesome/css/all.css"
+    />
+    <meta name="viewport" content="width=device-width initial-scale=1"/>
+    <title>POS System</title>
+</head>
+<body>
+<header>
+    <nav class="navbar fixed-top navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <img
+                    src="spa/assets/images/shopping-cart%20.png"
+                    alt=""
+                    width="50"
+                    height="55"
+                    class="d-inline-block align-text-center"
+            />
+            <span>P O S System</span>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+                <ul class="navbar-nav" id="nav-content">
+                    <li class="nav-item">
+                        <a
+                                id="nav-link-one"
+                                class="nav-link active"
+                                aria-current="page"
+                                href="#home"
+                        >Home</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                                id="nav-link-two"
+                                class="nav-link active"
+                                aria-current="page"
+                                href="#customer-page"
+                        >Customers</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                                id="nav-link-three"
+                                class="nav-link active"
+                                aria-current="page"
+                                href="#item-page"
+                        >Items</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                                id="nav-link-four"
+                                class="nav-link active"
+                                aria-current="page"
+                                href="#order-page"
+                        >Orders</a
+                        >
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                        >
+                            Others
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a
+                                        id="dropdown-one"
+                                        class="dropdown-item"
+                                        href="#customer-page"
+                                >Customers</a
+                                >
+                            </li>
+                            <li>
+                                <a id="dropdown-two" class="dropdown-item" href="#item-page"
+                                >Items</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                        id="dropdown-three"
+                                        class="dropdown-item"
+                                        href="#order-page"
+                                >Orders</a
+                                >
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<section class="container-fluid" id="home">
+    <section class="icons">
+        <div class="icon-div">
+            <i class="fa fa-user-plus"></i>
+            <h3>Sign Up</h3>
+        </div>
+        <div class="icon-div">
+            <i class="fa fa-power-off"></i>
+            <h3>Log Out</h3>
+        </div>
+    </section>
+    <section class="row mt-2" id="row">
+        <div class="col-12 px-0">
+            <div
+                    id="carouselHero"
+                    class="carousel slide"
+                    data-bs-ride="carousel"
+                    id="carouselExampleCaptions"
+            >
+                <div class="carousel-indicators">
+                    <button
+                            aria-current="true"
+                            aria-label="Slide 1"
+                            class="active"
+                            data-bs-slide-to="0"
+                            data-bs-target="#carouselExampleCaptions"
+                            type="button"
+                    ></button>
+                    <button
+                            aria-label="Slide 2"
+                            data-bs-slide-to="1"
+                            data-bs-target="#carouselExampleCaptions"
+                            type="button"
+                    ></button>
+                    <button
+                            aria-label="Slide 3"
+                            data-bs-slide-to="2"
+                            data-bs-target="#carouselExampleCaptions"
+                            type="button"
+                    ></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img
+                                alt="..."
+                                id="image1"
+                                class="d-block w-100"
+                                src="spa/assets/images/shop-1.jpg"
+                        />
+                        <div class="carousel-caption d-none d-md-block">
+                            <p>Get Started From Here.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img
+                                alt="..."
+                                id="image2"
+                                class="d-block w-100"
+                                src="spa/assets/images/shop-2.jpg"
+                        />
+                        <div class="carousel-caption d-none d-md-block">
+                            <p>Get Started From Here.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img
+                                alt="..."
+                                id="image3"
+                                class="d-block w-100"
+                                src="spa/assets/images/shop-3.jpg"
+                        />
+                        <div class="carousel-caption d-none d-md-block">
+                            <p>Get Started From Here.</p>
+                        </div>
+                    </div>
+                </div>
+                <button
+                        class="carousel-control-prev"
+                        data-bs-slide="prev"
+                        data-bs-target="#carouselExampleCaptions"
+                        type="button"
+                >
+              <span
+                      aria-hidden="true"
+                      class="carousel-control-prev-icon"
+              ></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button
+                        class="carousel-control-next"
+                        data-bs-slide="next"
+                        data-bs-target="#carouselExampleCaptions"
+                        type="button"
+                >
+              <span
+                      aria-hidden="true"
+                      class="carousel-control-next-icon"
+              ></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    <section class="row">
+        <div class="col-12" id="title">
+            <h1>Welcome To The POS System</h1>
+        </div>
+    </section>
+</section>
+<section id="customer-page">
+    <div class="customer-topic">
+        <img
+                src="spa/assets/images/customer.png"
+                class="img-fluid"
+                alt="..."
+                width="45"
+        />
+        <h3>
+            <small class="text-muted"><u>CUSTOMERS</u></small>
+        </h3>
+    </div>
+    <section class="icons">
+        <div class="icon-div">
+            <i class="fa fa-user-plus"></i>
+            <h3>Sign Up</h3>
+        </div>
+        <div class="icon-div">
+            <i class="fa fa-power-off"></i>
+            <h3>Log Out</h3>
+        </div>
+    </section>
+    <section id="customer-container" class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 col-xxl-7">
+                <form>
+                    <div class="col-12">
+                        <label for="cus-id" class="form-label">Customer ID</label>
+                        <input type="text" class="form-control" id="cus-id"/>
+                        <p><small id="id-error" class="text-danger pl-1"></small></p>
+                    </div>
+                    <div class="col-12">
+                        <label for="cus-name" class="form-label">Customer Name</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="cus-name"
+                                placeholder=""
+                        />
+                        <p><small id="name-error" class="text-danger pl-1"></small></p>
+                    </div>
+                    <div class="col-12">
+                        <label for="cus-address" class="form-label">Address</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="cus-address"
+                                placeholder=""
+                        />
+                        <p>
+                            <small id="address-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-12" id="rowCus">
+                        <label for="tel-num" class="form-label">Telephone Number</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="tel-num"
+                                placeholder=""
+                        />
+                        <p><small id="tele-error" class="text-danger pl-1"></small></p>
+                    </div>
+                </form>
+            </div>
+            <div
+                    id="customer-search-area"
+                    class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 col-xxl-5"
+            >
+                <div id="top-search">
+                    <h5>Search Customer</h5>
+                </div>
+                <form class="search-form">
+                    <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default"
+                >Search Here...</span
+                >
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="cus-search"
+                                aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default"
+                        />
+                    </div>
+                    <button
+                            id="customer-search-button"
+                            type="button"
+                            class="btn btn-primary"
+                    >
+                        Search
+                    </button>
+                </form>
+                <div class="button-area">
+                    <button
+                            id="button-save-customer"
+                            type="button"
+                            class="btn btn-success"
+                    >
+                        Save
+                    </button>
+                    <button
+                            id="button-update-customer"
+                            type="button"
+                            class="btn btn-info"
+                    >
+                        Update
+                    </button>
+                    <button
+                            id="button-delete-customer"
+                            type="button"
+                            class="btn btn-danger"
+                    >
+                        Delete
+                    </button>
+                    <button
+                            id="button-clear-customer"
+                            type="button"
+                            class="btn btn-warning"
+                    >
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table
+                        id="customer-table"
+                        class="table table-primary table-striped table-hover table-bordered"
+                >
+                    <thead>
+                    <tr>
+                        <th scope="col">Customer ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Telephone Number</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</section>
+<section id="item-page">
+    <div class="item-topic">
+        <img
+                src="spa/assets/images/shopping-bag.png"
+                class="img-fluid"
+                alt="..."
+                width="45"
+        />
+        <h3>
+            <small class="text-muted"><u>ITEMS</u></small>
+        </h3>
+    </div>
+    <section class="icons">
+        <div class="icon-div">
+            <i class="fa fa-user-plus"></i>
+            <h3>Sign Up</h3>
+        </div>
+        <div class="icon-div">
+            <i class="fa fa-power-off"></i>
+            <h3>Log Out</h3>
+        </div>
+    </section>
+    <section id="item-container" class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 col-xxl-7">
+                <form>
+                    <div class="col-12">
+                        <label for="item-code" class="form-label">Item Code</label>
+                        <input type="text" class="form-control" id="item-code"/>
+                        <p><small id="code-error" class="text-danger pl-1"></small></p>
+                    </div>
+                    <div class="col-12">
+                        <label for="item-name" class="form-label">Item Name</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="item-name"
+                                placeholder=""
+                        />
+                        <p>
+                            <small id="item-name-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <label for="item-quantity" class="form-label">Quantity</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="item-quantity"
+                                placeholder=""
+                        />
+                        <p>
+                            <small
+                                    id="item-quantity-error"
+                                    class="text-danger pl-1"
+                            ></small>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <label for="item-price" class="form-label">Price</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="item-price"
+                                placeholder=""
+                        />
+                        <p>
+                            <small id="item-price-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div
+                    id="item-search-area"
+                    class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-5 col-xxl-5"
+            >
+                <div id="top-item-search">
+                    <h5>Search Item</h5>
+                </div>
+                <form class="search-form">
+                    <div class="input-group mb-3">
+                <span class="input-group-text" id="search-item"
+                >Search Here...</span
+                >
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="item-search"
+                                aria-label="Sizing example input"
+                                aria-describedby="inputGroup-sizing-default"
+                        />
+                    </div>
+                    <button
+                            id="item-search-button"
+                            type="button"
+                            class="btn btn-primary"
+                    >
+                        Search
+                    </button>
+                </form>
+                <div class="button-area">
+                    <button
+                            id="button-save-item"
+                            type="button"
+                            class="btn btn-success"
+                    >
+                        Save
+                    </button>
+                    <button
+                            id="button-update-item"
+                            type="button"
+                            class="btn btn-info"
+                    >
+                        Update
+                    </button>
+                    <button
+                            id="button-delete-item"
+                            type="button"
+                            class="btn btn-danger"
+                    >
+                        Delete
+                    </button>
+                    <button
+                            id="button-clear-item"
+                            type="button"
+                            class="btn btn-warning"
+                    >
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table
+                        id="item-table"
+                        class="table table-primary table-striped table-hover table-bordered"
+                >
+                    <thead>
+                    <tr>
+                        <th scope="col">Item Code</th>
+                        <th scope="col">Item Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</section>
+<section id="order-page">
+    <div class="order-topic">
+        <img
+                src="spa/assets/images/order.png"
+                class="img-fluid"
+                alt="..."
+                width="45"
+        />
+        <h3>
+            <small class="text-muted"><u>ORDERS</u></small>
+        </h3>
+    </div>
+    <section class="icons">
+        <div class="icon-div">
+            <i class="fa fa-user-plus"></i>
+            <h3>Sign Up</h3>
+        </div>
+        <div class="icon-div">
+            <i class="fa fa-power-off"></i>
+            <h3>Log Out</h3>
+        </div>
+    </section>
+    <section id="order-container" class="container-fluid">
+        <div class="row" id="first-row">
+            <div
+                    id="invoice-area"
+                    class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4"
+            >
+                <div id="top-order-invoice">
+                    <h5>Invoice Details</h5>
+                </div>
+                <form class="row g-3" id="invoice-form">
+                    <div class="col-6">
+                        <label for="orderID" class="form-label">Order ID</label>
+                        <input type="text" class="form-control" id="orderID"/>
+                        <p>
+                            <small id="order-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <label for="id-error" class="form-label">Search</label>
+                        <input type="text" class="form-control" id="order-search"/>
+                        <p>
+                            <small id="order-search-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <label for="date" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="date"/>
+                    </div>
+                    <div class="col-6">
+                        <label for="cusID" class="form-label">Customer ID</label>
+                        <select id="cusID" class="form-select">
+                            <option style="display: none" selected>Choose...</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label for="customer" class="form-label">Customer</label>
+                        <input type="text" class="form-control" id="customer"/>
+                        <p>
+                            <small id="customer-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <label for="name" class="form-label">Name</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="name"
+                                placeholder=""
+                        />
+                        <p>
+                            <small id="customer-name-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <label for="address" class="form-label">Address</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="address"
+                                placeholder=""
+                        />
+                        <p>
+                            <small id="cus-address-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <label for="telNum" class="form-label">Telephone Number</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="telNum"
+                                placeholder=""
+                        />
+                        <p>
+                            <small id="number-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div
+                    id="select-item-area"
+                    class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4"
+            >
+                <div id="top-select-item">
+                    <h5>Item Select</h5>
+                </div>
+                <form class="row g-3" id="item-form">
+                    <div class="col-12">
+                        <label for="itemCode" class="form-label">Item Code</label>
+                        <select id="ItemCode" class="form-select">
+                            <option style="display: none" selected>Choose...</option>
+                        </select>
+                        <p>
+                            <small></small>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <label for="item" class="form-label">Item</label>
+                        <input type="text" class="form-control" id="item"/>
+                        <p>
+                            <small id="item-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <label for="itemName" class="form-label">Item Name</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="itemName"
+                                placeholder=""
+                        />
+                        <p>
+                            <small id="itemName-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <label for="quantityOnHand" class="form-label"
+                        >Quantity On Hand</label
+                        >
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="quantityOnHand"
+                                placeholder=""
+                        />
+                        <p>
+                            <small id="qty-error" class="text-danger pl-1"></small>
+                        </p>
+                        <div class="col-12">
+                            <label for="price" class="form-label">Price</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="price"
+                                    placeholder=""
+                            />
+                            <p>
+                                <small id="price-error" class="text-danger pl-1"></small>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <label for="quantity" class="form-label">Order Quantity</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="quantity"
+                                placeholder=""
+                        />
+                        <p>
+                            <small
+                                    id="orderQuantity-error"
+                                    class="text-danger pl-1"
+                            ></small>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary" id="btnAddItem">
+                            Add Item
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div
+                    id="billing-area"
+                    class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 col-xxl-4 border border-info border-2 rounded-3"
+            >
+                <form class="row g-3" id="bill">
+                    <div class="col-3">
+                        <h5>Total: Rs.</h5>
+                    </div>
+                    <div class="col-9">
+                        <h5 id="total"></h5>
+                    </div>
+                    <div class="col-4">
+                        <h5>Sub Total: Rs.</h5>
+                    </div>
+                    <div class="col-8">
+                        <h5 id="sub-total"></h5>
+                    </div>
+                    <div class="col-12">
+                        <label for="cash" class="form-label">Cash</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="cash"
+                                placeholder=""
+                        />
+                        <p>
+                            <small id="credit-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <label for="discount" class="form-label">Discount</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="discount"
+                                placeholder=""
+                        />
+                        <p>
+                            <small id="discount-error" class="text-danger pl-1"></small>
+                        </p>
+                    </div>
+                    <div class="col-12">
+                        <label for="balance" class="form-label">Balance</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="balance"
+                                placeholder=""
+                        />
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-success" id="btn-purchase">
+                            Add Purchase
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row" id="second-row">
+            <div id="order-table" class="col-12 table-responsive">
+                <table
+                        class="table table-primary table-striped table-hover table-bordered"
+                        id="cart"
+                >
+                    <thead>
+                    <tr>
+                        <th scope="col">Code</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</section>
+<script src="spa/assets/js/bootstrap.min.js"></script>
+<script src="spa/assets/jQuery/jquery-3.6.0.min.js"></script>
+<script src="spa/db/DB.js"></script>
+<script src="spa/model/Customer.js"></script>
+<script src="spa/controller/CustomerController.js"></script>
+<script src="spa/model/Item.js"></script>
+<script src="spa/controller/ItemController.js"></script>
+<script src="spa/model/Order.js"></script>
+<script src="spa/controller/OrderController.js"></script>
+<script src="spa/model/CartTM.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    document
+        .getElementsByClassName('nav-link')[0]
+        .addEventListener('click', function () {
+            document.getElementById('home').style.display = 'block';
+            document.getElementById('customer-page').style.display = 'none';
+            document.getElementById('item-page').style.display = 'none';
+            document.getElementById('order-page').style.display = 'none';
+        });
+
+    document
+        .getElementsByClassName('nav-link')[1]
+        .addEventListener('click', function () {
+            document.getElementById('customer-page').style.display = 'block';
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('item-page').style.display = 'none';
+            document.getElementById('order-page').style.display = 'none';
+
+            //Load Table Details To Input Fields
+            loadCustomerDetailsToInputFields();
+
+            //Remove Table Details when double click the row
+            removeTableRows();
+        });
+
+    document
+        .getElementsByClassName('nav-link')[2]
+        .addEventListener('click', function () {
+            document.getElementById('item-page').style.display = 'block';
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('customer-page').style.display = 'none';
+            document.getElementById('order-page').style.display = 'none';
+
+            //Load Table Details To Input Fields
+            loadItemDetailsToInputFields();
+
+            //Remove Table Details when double click the row
+            removeItemTableRows();
+        });
+
+    document
+        .getElementsByClassName('nav-link')[3]
+        .addEventListener('click', function () {
+            document.getElementById('order-page').style.display = 'block';
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('customer-page').style.display = 'none';
+            document.getElementById('item-page').style.display = 'none';
+        });
+
+    document
+        .getElementsByClassName('dropdown-item')[0]
+        .addEventListener('click', function () {
+            document.getElementById('customer-page').style.display = 'block';
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('item-page').style.display = 'none';
+            document.getElementById('order-page').style.display = 'none';
+        });
+
+    document
+        .getElementsByClassName('dropdown-item')[1]
+        .addEventListener('click', function () {
+            document.getElementById('item-page').style.display = 'block';
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('customer-page').style.display = 'none';
+            document.getElementById('order-page').style.display = 'none';
+        });
+
+    document
+        .getElementsByClassName('dropdown-item')[2]
+        .addEventListener('click', function () {
+            document.getElementById('order-page').style.display = 'block';
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('customer-page').style.display = 'none';
+            document.getElementById('item-page').style.display = 'none';
+        });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('home').style.display = 'block';
+        document.getElementById('customer-page').style.display = 'none';
+        document.getElementById('item-page').style.display = 'none';
+        document.getElementById('order-page').style.display = 'none';
+    });
+
+    // $("#home").css('display', 'block');
+    // $("#customer-page").css('display', 'none');
+    // $("#item-page").css('display', 'none');
+    // $("#order-page").css('display', 'none');
+    //
+    // $("#nav-link-one").click(function () {
+    //     $("#home").css('display', 'block');
+    //     $("#customer-page").css('display', 'none');
+    //     $("#item-page").css('display', 'none');
+    //     $("#order-page").css('display', 'none');
+    // });
+    //
+    // $("#nav-link-two").click(function () {
+    //     $("#home").css('display', 'none');
+    //     $("#customer-page").css('display', 'block');
+    //     $("#item-page").css('display', 'none');
+    //     $("#order-page").css('display', 'none');
+    // });
+    //
+    // $("#nav-link-three").click(function () {
+    //     $("#home").css('display', 'none');
+    //     $("#customer-page").css('display', 'none');
+    //     $("#item-page").css('display', 'block');
+    //     $("#order-page").css('display', 'none');
+    // });
+    //
+    // $("#nav-link-four").click(function () {
+    //     $("#home").css('display', 'none');
+    //     $("#customer-page").css('display', 'none');
+    //     $("#item-page").css('display', 'none');
+    //     $("#order-page").css('display', 'block');
+    // });
+    //
+    // $("#dropdown-one").click(function () {
+    //     $("#home").css('display', 'none');
+    //     $("#customer-page").css('display', 'block');
+    //     $("#item-page").css('display', 'none');
+    //     $("#order-page").css('display', 'none');
+    // });
+    //
+    // $("#dropdown-two").click(function () {
+    //     $("#home").css('display', 'none');
+    //     $("#customer-page").css('display', 'none');
+    //     $("#item-page").css('display', 'block');
+    //     $("#order-page").css('display', 'none');
+    // });
+    //
+    // $("#dropdown-three").click(function () {
+    //     $("#home").css('display', 'none');
+    //     $("#customer-page").css('display', 'none');
+    //     $("#item-page").css('display', 'none');
+    //     $("#order-page").css('display', 'block');
+    // });
+</script>
+</body>
+</html>

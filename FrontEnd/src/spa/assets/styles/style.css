@@ -1,0 +1,339 @@
+/*navigation styles*/
+nav {
+    background-color: #ba55e8;
+}
+
+#nav-content {
+    right: 60px;
+    position: absolute;
+    background-color: rgba(186, 85, 232, 0.9);
+}
+
+.navbar-nav li {
+    padding-left: 30px;
+    font-weight: 500;
+    font-family: "Comic Sans MS";
+    font-size: 18px;
+}
+
+#nav-content a {
+    transition-duration: 0.5s;
+}
+
+#nav-content a:hover {
+    color: aqua;
+    transition: 0.5s;
+}
+
+nav > div > span {
+    padding-left: 20px;
+    font-weight: 500;
+    font-size: 25px;
+    color: #02024b;
+}
+
+.icons {
+    width: 228px;
+    height: 90px;
+    top: 85px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    right: 0;
+}
+
+#home {
+    position: relative;
+}
+
+#carouselHero .carousel-item > img {
+    width: 100vw;
+    height: 88.8vh;
+}
+
+@media all and (min-width: 320px) and (max-width: 600px) {
+    #carouselHero .carousel-item > img {
+        height: 60vh;
+    }
+}
+
+#carouselHero .carousel-item:before {
+    content: "";
+    background-image: linear-gradient(to bottom, rgba(44, 14, 92, 0.6), rgba(0, 0, 0, 0.6));
+    display: block;
+    position: absolute;
+    top: -100px;
+    width: 100vw;
+    height: 127vh;
+}
+
+#title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    background: linear-gradient(#622b99, #31074b);
+}
+
+#title h1 {
+    color: white;
+    font-family: "Calibri";
+    font-weight: bold;
+    letter-spacing: 6px;
+}
+
+.icons {
+    z-index: 5;
+}
+
+.icons div {
+    right: -180px;
+    height: 35px;
+    position: relative;
+    background: #a55aef;
+    color: white;
+    display: inline;
+    box-shadow: 1px 2px 3px 2px #3a483b;
+    transition-duration: 3s;
+}
+
+.icons div > h3 {
+    position: absolute;
+    left: 100px;
+    margin: 0;
+    display: inline-block;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.icons div > i {
+    position: absolute;
+    left: 10px;
+    top: 7px;
+    font-size: 20px;
+}
+
+.icon-div:hover {
+    background: #2772fa;
+    right: 1px;
+    cursor: pointer;
+    transition: all 3s;
+}
+
+#customer-page {
+    position: relative;
+}
+
+.customer-topic img {
+    position: relative;
+    left: 10px;
+    top: 85px
+}
+
+.customer-topic h3 {
+    position: relative;
+    left: 24px;
+    display: inline;
+    top: 90px;
+}
+
+#customer-container {
+    position: relative;
+    top: 130px;
+    height: 70vh;
+}
+
+.table td, .table th {
+    word-break: break-word;
+}
+
+#customer-table {
+    position: relative;
+    top: 50px;
+    padding-left: 8px;
+    padding-right: 5px;
+}
+
+#top-search {
+    width: 100%;
+    height: 40px;
+    background-color: #03035c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#top-search h5 {
+    text-align: center;
+    color: white;
+}
+
+.input-group {
+    top: 30px;
+}
+
+.search-form {
+    background: linear-gradient(#ab8bec, #96e1f1);
+}
+
+
+#customer-search-button {
+    top: 65px;
+    display: inline;
+    position: relative;
+}
+
+#customer-search-area {
+    position: relative;
+}
+
+.button-area {
+    position: relative;
+    top: 100px;
+}
+
+@media all and (min-width: 320px) and (max-width: 768px){
+    #customer-table{
+        top:120px;
+    }
+}
+
+/*=========================Item Page Styles=============================*/
+#item-page {
+    position: relative;
+    height: 100vh;
+}
+
+.item-topic img {
+    position: relative;
+    left: 10px;
+    top: 90px;
+}
+
+.item-topic h3 {
+    position: relative;
+    left: 24px;
+    top: 95px;
+    display: inline;
+}
+
+#item-container {
+    position: relative;
+    top: 130px;
+    height: 50vh;
+}
+
+#item-table {
+    position: relative;
+    top: 50px;
+    padding-left: 8px;
+    padding-right: 5px;
+}
+
+#top-item-search {
+    width: 100%;
+    height: 40px;
+    background-color: #03035c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#top-item-search h5 {
+    text-align: center;
+    color: white;
+}
+
+#item-search-button {
+    top: 65px;
+    display: inline;
+    position: relative;
+}
+
+#item-search-area {
+    position: relative;
+}
+
+@media all and (min-width: 320px) and (max-width: 768px) {
+    #item-table {
+        top: 120px;
+    }
+}
+/*==============================Order Page Styles====================================*/
+#order-page {
+    position: relative;
+    height: 100vh;
+}
+
+.order-topic img {
+    position: relative;
+    left: 10px;
+    top: 80px;
+}
+
+.order-topic h3 {
+    position: relative;
+    left: 24px;
+    top: 85px;
+    display: inline;
+}
+
+#first-row {
+    position: relative;
+    top: 85px;
+}
+
+#second-row {
+    position: relative;
+    top: 90px;
+}
+
+#top-order-invoice {
+    width: 100%;
+    height: 40px;
+    background-color: #1f62b4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#top-order-invoice h5 {
+    text-align: center;
+    color: white;
+}
+
+#top-select-item {
+    width: 100%;
+    height: 40px;
+    background-color: #34a159;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#top-select-item h5 {
+    text-align: center;
+    color: white;
+}
+
+#billing-area {
+    background-color: white;
+}
+
+#billing-area h5:first-child {
+    color: #111f9c;
+}
+
+#billing-area h5:nth-child(2) {
+    color: purple;
+}
+
+#order-page input, #order-page select {
+    height: 35px;
+}
+
+
+
+
