@@ -1,4 +1,4 @@
-function CartTM(itemID, item, unitPrice, qty, totalPrice) {
+function Cart(itemID, item, unitPrice, qty, totalPrice) {
     var __itemID = itemID;
     var __item = item;
     var __unitPrice = unitPrice;
