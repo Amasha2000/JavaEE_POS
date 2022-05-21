@@ -3,6 +3,9 @@ package dao.custom.impl;
 import dao.CrudUtil;
 import dao.custom.CustomerDAO;
 import entity.Customer;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -10,18 +13,21 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 
     @Override
-    public  boolean add(Customer customer) throws SQLException, ClassNotFoundException {
-        return CrudUtil.executeUpdate("INSERT INTO customer VALUES(?,?,?,?)",customer.getCustomerID(),customer.getCustomerName(),customer.getCustomerAddress(),customer.getCustomerTeleNumber());
+    public  boolean add(Customer customer, Connection connection) throws SQLException, ClassNotFoundException {
+        return CrudUtil.executeUpdate("INSERT INTO customer VALUES(?,?,?,?)",connection,customer.getCustomerID(),customer.getCustomerName(),customer.getCustomerAddress(),customer.getCustomerTeleNumber());
     }
 
     @Override
     public boolean update(Customer customer) throws SQLException, ClassNotFoundException {
-        return CrudUtil.executeUpdate("UPDATE customer SET name=?,address=?,teleNumber=? WHERE id=?",customer.getCustomerName(),customer.getCustomerAddress(),customer.getCustomerTeleNumber(),customer.getCustomerID());
+       // return CrudUtil.executeUpdate("UPDATE customer SET name=?,address=?,teleNumber=? WHERE id=?",customer.getCustomerName(),customer.getCustomerAddress(),customer.getCustomerTeleNumber(),customer.getCustomerID());
+
     }
+
 
     @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
-       return CrudUtil.executeUpdate("DELETE FROM customer WHERE id=?",id);
+      // return CrudUtil.executeUpdate("DELETE FROM customer WHERE id=?",id);
+        return false;
     }
 
     @Override
@@ -30,7 +36,13 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public ArrayList<Customer> getAll() {
+    public ArrayList<Customer> getAll() throws SQLException, ClassNotFoundException {
+//        ArrayList<Customer> allCustomers=new ArrayList<>();
+//        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM customer");
+//        while (resultSet.next()){
+//            allCustomers.add(new Customer(resultSet.getString("customerID"),resultSet.getString("customerName"),resultSet.getString("customerAddress"),resultSet.getString("customerSalary")));
+//        }
+//        return allCustomers;
         return null;
     }
 }

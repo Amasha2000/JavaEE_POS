@@ -9,30 +9,36 @@ function saveCustomer() {
     if (confirm('Do you want to Save Customer Details?')) {
 
         var customerForm = $("#customerForm").serialize();
+        console.log(customerForm);
         $.ajax({
             url:"http://localhost:8080/BackEnd_Web_exploded/customer",
             method:"POST",
             data:customerForm,
             success:function (res){
-                alert(res.message);
+                if(res.status==200){
+                    console.log("cor")
+                    alert(res.message);
 
-                //Load Customer Details To Table
-                loadCustomerDetailsToTable();
+                   //  Load Customer Details To Table
+                   // loadCustomerDetailsToTable();
 
-                //clear Input Fields
-                clearAll();
+                    //clear Input Fields
+                   // clearAll();
 
-                //Load Table Details To Input Fields
-                loadCustomerDetailsToInputFields();
+                    //Load Table Details To Input Fields
+                   // loadCustomerDetailsToInputFields();
 
-                //Remove Table Details when double click the row
-                removeTableRows();
+                    //Remove Table Details when double click the row
+                  //  removeTableRows();
+
+                }
 
                 //populate customer drop down list
                 //populateCustomerDropDown();
             },
             error:function (ob,textStatus,error){
                 alert(textStatus)
+                console.log("wro")
 
             }
         });
@@ -214,6 +220,10 @@ function loadCustomerDetailsToTable() {
                     `<tr><td>${resp.data[i].id}</td><td>${resp.data[i].name}</td><td>${resp.data[i].address}</td><td>${resp.data[i].teleNumber}</td></tr>`
                 );
             }
+            loadCustomerDetailsToInputFields();
+        },
+        error:function(ob,state){
+            console.log(ob,state);
         }
     });
 }
