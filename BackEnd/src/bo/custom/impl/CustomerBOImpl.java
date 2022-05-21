@@ -33,13 +33,13 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException {
-//        ArrayList<CustomerDTO> allCustomers=new ArrayList<>();
-//        ArrayList<Customer> all=customerDAO.getAll();
-//        for (Customer customer:all){
-//            allCustomers.add(new CustomerDTO(customer.getCustomerID(),customer.getCustomerName(),customer.getCustomerAddress(),customer.getCustomerTeleNumber()));
-//        }
-//        return allCustomers;
-    return null;
+    public ArrayList<CustomerDTO> getAllCustomers(Connection connection) throws SQLException, ClassNotFoundException {
+        ArrayList<CustomerDTO> allCustomers=new ArrayList<>();
+        ArrayList<Customer> all=customerDAO.getAll(connection);
+        for (Customer customer:all){
+            allCustomers.add(new CustomerDTO(customer.getCustomerID(),customer.getCustomerName(),customer.getCustomerAddress(),customer.getCustomerTeleNumber()));
+        }
+        return allCustomers;
+
     }
 }

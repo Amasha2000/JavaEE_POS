@@ -9,27 +9,27 @@ function saveCustomer() {
     if (confirm('Do you want to Save Customer Details?')) {
 
         var customerForm = $("#customerForm").serialize();
-        console.log(customerForm);
+
         $.ajax({
             url:"http://localhost:8080/BackEnd_Web_exploded/customer",
             method:"POST",
             data:customerForm,
             success:function (res){
                 if(res.status==200){
-                    console.log("cor")
-                    alert(res.message);
 
-                   //  Load Customer Details To Table
-                   // loadCustomerDetailsToTable();
+                   alert(res.message);
+
+                  //  Load Customer Details To Table
+                   loadCustomerDetailsToTable();
 
                     //clear Input Fields
-                   // clearAll();
+                    clearAll();
 
                     //Load Table Details To Input Fields
-                   // loadCustomerDetailsToInputFields();
+                    loadCustomerDetailsToInputFields();
 
                     //Remove Table Details when double click the row
-                  //  removeTableRows();
+                    removeTableRows();
 
                 }
 
@@ -243,7 +243,6 @@ function clearAll() {
 
     $('#cus-id').focus();
     $('#button-save-customer').attr('disabled', true);
-    loadCustomerDetailsToTable();
     $('#id-error,#name-error,#address-error,#tele-error').text('');
 
     //Load Table Details To Input Fields

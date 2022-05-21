@@ -20,7 +20,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     @Override
     public boolean update(Customer customer) throws SQLException, ClassNotFoundException {
        // return CrudUtil.executeUpdate("UPDATE customer SET name=?,address=?,teleNumber=? WHERE id=?",customer.getCustomerName(),customer.getCustomerAddress(),customer.getCustomerTeleNumber(),customer.getCustomerID());
-
+        return false;
     }
 
 
@@ -36,13 +36,13 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public ArrayList<Customer> getAll() throws SQLException, ClassNotFoundException {
-//        ArrayList<Customer> allCustomers=new ArrayList<>();
-//        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM customer");
-//        while (resultSet.next()){
-//            allCustomers.add(new Customer(resultSet.getString("customerID"),resultSet.getString("customerName"),resultSet.getString("customerAddress"),resultSet.getString("customerSalary")));
-//        }
-//        return allCustomers;
-        return null;
+    public ArrayList<Customer> getAll(Connection connection) throws SQLException, ClassNotFoundException {
+        ArrayList<Customer> allCustomers=new ArrayList<>();
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT * FROM customer",connection);
+        while (resultSet.next()){
+            allCustomers.add(new Customer(resultSet.getString("id"),resultSet.getString("name"),resultSet.getString("address"),resultSet.getString("teleNumber")));
+        }
+        return allCustomers;
+
     }
 }

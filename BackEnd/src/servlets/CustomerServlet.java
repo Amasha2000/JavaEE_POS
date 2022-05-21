@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 @WebServlet(urlPatterns = "/customer")
 public class CustomerServlet extends HttpServlet {
@@ -42,13 +43,6 @@ public class CustomerServlet extends HttpServlet {
         try {
             Connection connection = ds.getConnection();
             boolean b = customerBO.addCustomer(customerDTO,connection);
-//            PreparedStatement preparedStatement = ds.getConnection().prepareStatement("INSERT INTO customer VALUES(?,?,?,?)");
-//            preparedStatement.setObject(1,customerID);
-//            preparedStatement.setObject(2,customerName);
-//            preparedStatement.setObject(3,customerAddress);
-//            preparedStatement.setObject(4,customerTeleNumber);
-
-            //boolean b= preparedStatement.executeUpdate()>0;
 
             if (b) {
                 JsonObjectBuilder response = Json.createObjectBuilder();
@@ -82,45 +76,46 @@ public class CustomerServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        try{
-//        String option=req.getParameter("option");
-//        resp.setContentType("application/json");
-//        PrintWriter writer=resp.getWriter();
-//
-//        switch (option){
-//            case "SEARCH":
-//                break;
-//            case  "GETALL":
-//                // resultSet = ds.getConnection().prepareStatement("SELECT * FROM customer").executeQuery();
-//                ArrayList<CustomerDTO> allCustomers = customerBO.getAllCustomers();
-//
-//                JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-//                for (CustomerDTO customerDTO:allCustomers){
-//                    String id = customerDTO.getCustomerID();
-//                    String name = customerDTO.getCustomerName();
-//                    String address = customerDTO.getCustomerAddress();
-//                    String teleNumber = customerDTO.getCustomerTeleNumber();
-//
-//                    JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-//                    objectBuilder.add("id",id);
-//                    objectBuilder.add("name",name);
-//                    objectBuilder.add("address",address);
-//                    objectBuilder.add("teleNumber",teleNumber);
-//                    arrayBuilder.add(objectBuilder.build());
-//                }
-//                JsonObjectBuilder response = Json.createObjectBuilder();
-//                response.add("status", 200);
-//                response.add("message", "Done");
-//                response.add("data", arrayBuilder.build());
-//                writer.print(response.build());
-//                break;
-//
-//        }
-//           // CrudUtil.connection.close();
-//        } catch (SQLException | ClassNotFoundException throwables) {
-//            throwables.printStackTrace();
-//
-//        }
+        try{
+            Connection connection = ds.getConnection();
+            String option=req.getParameter("option");
+            resp.setContentType("application/json");
+            PrintWriter writer=resp.getWriter();
+
+        switch (option){
+            case "SEARCH":
+                break;
+            case  "GETALL":
+
+                ArrayList<CustomerDTO> allCustomers = customerBO.getAllCustomers(connection);
+
+                JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
+                for (CustomerDTO customerDTO:allCustomers){
+                    String id = customerDTO.getCustomerID();
+                    String name = customerDTO.getCustomerName();
+                    String address = customerDTO.getCustomerAddress();
+                    String teleNumber = customerDTO.getCustomerTeleNumber();
+
+                    JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
+                    objectBuilder.add("id",id);
+                    objectBuilder.add("name",name);
+                    objectBuilder.add("address",address);
+                    objectBuilder.add("teleNumber",teleNumber);
+                    arrayBuilder.add(objectBuilder.build());
+                }
+                JsonObjectBuilder response = Json.createObjectBuilder();
+                response.add("status", 200);
+                response.add("message", "Done");
+                response.add("data", arrayBuilder.build());
+                writer.print(response.build());
+                break;
+
+        }
+
+        } catch (SQLException | ClassNotFoundException throwables) {
+            throwables.printStackTrace();
+
+        }
     }
 
     @Override
