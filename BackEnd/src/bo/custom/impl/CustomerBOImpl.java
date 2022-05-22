@@ -43,4 +43,9 @@ public class CustomerBOImpl implements CustomerBO {
         return allCustomers;
 
     }
+
+    @Override
+    public ArrayList<String> getAllCustomerId() {
+        return null;
+    }
 }

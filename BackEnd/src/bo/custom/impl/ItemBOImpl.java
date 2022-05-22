@@ -45,4 +45,9 @@ public class ItemBOImpl implements ItemBO {
         }
         return allItems;
     }
+
+    @Override
+    public ArrayList<String> getAllItemCode() {
+        return null;
+    }
 }
