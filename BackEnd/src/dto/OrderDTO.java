@@ -1,19 +1,23 @@
 package dto;
 
+import entity.OrderDetail;
+
+import java.util.ArrayList;
+
 public class OrderDTO {
     private String orderId;
     private String cusId;
     private String date;
     private double cost;
+    private ArrayList<OrderDetailDTO> detailList;
 
-    public OrderDTO() {
-    }
 
-    public OrderDTO(String orderId, String cusId, String date, double cost) {
+    public OrderDTO(String orderId, String cusId, String date, double cost, ArrayList<OrderDetailDTO> detailList) {
         this.setOrderId(orderId);
         this.setCusId(cusId);
         this.setDate(date);
         this.setCost(cost);
+        this.setDetailList(detailList);
     }
 
     public String getOrderId() {
@@ -46,5 +50,13 @@ public class OrderDTO {
 
     public void setCost(double cost) {
         this.cost = cost;
+    }
+
+    public ArrayList<OrderDetailDTO> getDetailList() {
+        return detailList;
+    }
+
+    public void setDetailList(ArrayList<OrderDetailDTO> detailList) {
+        this.detailList = detailList;
     }
 }

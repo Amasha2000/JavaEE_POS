@@ -123,21 +123,18 @@ function itemSearch(id){
 }
 
 //set order ID automatically
-$("#orderID").val("O00-001");
 
 function createAutoID() {
-    for (var i = 0; i < orderArray.length; i++) {
-        var orderId = orderArray[i].getOrderID();
-        var temp = orderId.split("-");
-        temp = +temp[1] + +1;
-        if (temp <= 9) {
-            $("#orderID").val("O00-00" + temp);
-        } else if (temp <= 99) {
-            $("#orderID").val("O00-0" + temp);
-        } else {
-            $("#orderID").val("O00-" + temp);
+    $.ajax({
+        url:"http://localhost:8080/BackEnd_Web_exploded/order?option=GETID",
+        method:"GET",
+        success:function (resp){
+            $("#orderID").val(resp.data);
+        },
+        error:function(ob,state){
+            console.log(ob,state);
         }
-    }
+    });
 }
 
 //check if the quantity is sufficient
@@ -156,51 +153,72 @@ function checkSufficientQuantity() {
     });
 }
 
+var cartArray =new Array();
 
 //add items to cart
 $("#btnAddItem").on("click", function () {
+     var code = $("#item").val();
+     var name = $("#itemName").val();
+     var unitPrice = $("#price").val();
+     var qty = $("#quantity").val();
+     var totalPrice = (qty * unitPrice).toFixed(2);
 
-    let code = $("#item").val();
-    let name = $("#itemName").val();
-    let unitPrice = $("#price").val();
-    let qty = $("#quantity").val();
-    let totalPrice = (qty * unitPrice).toFixed(2);
-
-    let searchResponse = searchCart(code);
-    let searchItemResponse = searchItem(code);
-
-    if (searchResponse) {
-
-        let totalQty = +searchResponse.getQty() + +qty;
-        let total = (totalQty * unitPrice).toFixed(2);
-
-        searchResponse.setItemID(code);
-        searchResponse.setItem(name);
-        searchResponse.setItemUnitPrice(unitPrice);
-        searchResponse.setQty(totalQty);
-        searchResponse.setTotalPrice(total);
-        loadCartDetailsToTable()
-
-        searchItemResponse.setQuantity(+searchItemResponse.getQuantity() - +qty);
-        loadItemDetailsToTable();
-        getSelectedItem();
-
-        $("#quantity").val("");
-        removeItems();
-
-    } else {
-        var cart = new CartTM(code, name, unitPrice, qty, totalPrice);
-        cartArray.push(cart);
-        loadCartDetailsToTable();
-
-        searchItemResponse.setQuantity(+searchItemResponse.getQuantity() - +qty);
-        loadItemDetailsToTable();
-        getSelectedItem();
-
-        $("#quantity").val("");
+     var item={
+        "code":code,
+        "name":name,
+        "unitPrice":unitPrice,
+        "qty" :qty,
+        "tot":totalPrice
     }
 
-    setTotal();
+
+     if(cartArray.length!=0) {
+         var resp= searchCart(code);
+        if(resp) {
+                    let totalQty = +(resp.qty) + +qty;
+                    let total = (totalQty * unitPrice).toFixed(2);
+
+                    resp.code = code;
+                    resp.name = name;
+                    resp.unitPrice = unitPrice;
+                    resp.qty = totalQty;
+                    resp.tot = total;
+
+                    loadCartDetailsToTable();
+
+                    // searchItemResponse.setQuantity(+searchItemResponse.getQuantity() - +qty);
+                    // getSelectedItem();
+
+                    $("#quantity").val("");
+                    // removeItems();
+
+                    setTotal();
+                }else {
+            cartArray.push(item);
+            loadCartDetailsToTable();
+            // searchItemResponse.setQuantity(+searchItemResponse.getQuantity() - +qty);
+            // getSelectedItem();
+
+            $("#quantity").val("");
+
+            setTotal();
+            
+
+            // let searchItemResponse = searchItem(code);
+        }
+        }else {
+         cartArray.push(item);
+         loadCartDetailsToTable();
+         // searchItemResponse.setQuantity(+searchItemResponse.getQuantity() - +qty);
+         // getSelectedItem();
+
+         $("#quantity").val("");
+
+         setTotal();
+
+         // let searchItemResponse = searchItem(code);
+     }
+
 });
 
 //load cart details to the table
@@ -208,7 +226,7 @@ function loadCartDetailsToTable() {
     $('#cart tbody').empty();
     for (var i of cartArray) {
         $('#cart tbody').append(
-            `<tr><td>${i.getItemID()}</td><td>${i.getItem()}</td><td>${i.getItemUnitPrice()}</td><td>${i.getQty()}</td><td>${i.getTotalPrice()}</td></tr>`
+            `<tr><td>${i.code}</td><td>${i.name}</td><td>${i.unitPrice}</td><td>${i.qty}</td><td>${i.tot}</td></tr>`
         );
     }
     removeItems();
@@ -216,19 +234,19 @@ function loadCartDetailsToTable() {
 
 //search cart
 function searchCart(id) {
-    for (let i = 0; i < cartArray.length; i++) {
-        if (cartArray[i].getItemID() == id) {
+    for (var i = 0; i < cartArray.length; i++) {
+
+        if (cartArray[i].code == id) {
             return cartArray[i];
         }
     }
 }
 
-
 //calculate total
 function setTotal() {
     var sumOfTotal = 0;
     for (var i = 0; i < cartArray.length; i++) {
-        sumOfTotal = (+sumOfTotal + +cartArray[i].getTotalPrice()).toFixed(2);
+        sumOfTotal = (+sumOfTotal + +cartArray[i].tot).toFixed(2);
     }
     $("#total").text(sumOfTotal);
     $("#sub-total").text(sumOfTotal);
@@ -286,17 +304,28 @@ $("#btn-purchase").on("click", function () {
             'solid 2px #ced4da'
         );
         $("#credit-error").text('');
-        var orderID = $("#orderID").val();
-        var customerId = $("#customer").val();
-        var date = $("#date").val();
-        var totalCost = $("#sub-total").text();
 
-        var order = new OrderDTO(orderID, customerId, date, totalCost);
+        var bill = $("#bill").serialize();
+        var oId=$("#orderId").val();
+        var date=$("#date").val();
 
-        orderArray.push(order);
-        swal("Order Placed Successfully", "success");
-        clearOrderDetail();
-        createAutoID();
+        $.ajax({
+            url: "http://localhost:8080/BackEnd_Web_exploded/order&OId="+oId,
+            method: "POST",
+            data: bill,
+            success: function (res) {
+                if (res.status == 200) {
+
+                    //alert(res.message);
+                    swal("Order Placed Successfully", "success");
+                    clearOrderDetail();
+                    createAutoID();
+                }
+            },
+            error: function (ob, textStatus, error) {
+                alert(textStatus);
+            }
+        });
     }
 });
 
@@ -314,30 +343,30 @@ function clearOrderDetail() {
 }
 
 //search order
-$('#order-search').keydown(function (event) {
-    if (event.key == 'Control') {
-        var oId = $('#order-search').val();
-        var responseId = searchOrder(oId);
-        if (responseId) {
-            var responseCustomer = searchCustomer(responseId.getCusId());
-            $('#customer').val(responseId.getCusId());
-            $('#name').val(responseCustomer.getCustomerName());
-            $('#address').val(responseCustomer.getCustomerAddress());
-            $('#telNum').val(responseCustomer.getCustomerTeleNumber());
-            $('#total').text(responseId.getCost());
-        } else {
-            swal("No such an order", "info");
-        }
-    }
-});
+// $('#order-search').keydown(function (event) {
+//     if (event.key == 'Control') {
+//         var oId = $('#order-search').val();
+//         var responseId = searchOrder(oId);
+//         if (responseId) {
+//             var responseCustomer = searchCustomer(responseId.getCusId());
+//             $('#customer').val(responseId.getCusId());
+//             $('#name').val(responseCustomer.getCustomerName());
+//             $('#address').val(responseCustomer.getCustomerAddress());
+//             $('#telNum').val(responseCustomer.getCustomerTeleNumber());
+//             $('#total').text(responseId.getCost());
+//         } else {
+//             swal("No such an order", "info");
+//         }
+//     }
+// });
 
-function searchOrder(id) {
-    for (let i = 0; i < orderArray.length; i++) {
-        if (orderArray[i].getOrderID() == id) {
-            return orderArray[i];
-        }
-    }
-}
+// function searchOrder(id) {
+//     for (let i = 0; i < orderArray.length; i++) {
+//         if (orderArray[i].getOrderID() == id) {
+//             return orderArray[i];
+//         }
+//     }
+// }
 
 
 //validate customer details

@@ -557,23 +557,16 @@
                     <h5>Invoice Details</h5>
                 </div>
                 <form class="row g-3" id="invoice-form">
-                    <div class="col-6">
+                    <div class="col-12">
                         <label for="orderID" class="form-label">Order ID</label>
-                        <input type="text" class="form-control" id="orderID"/>
+                        <input type="text" class="form-control" id="orderID" name="OId"/>
                         <p>
                             <small id="order-error" class="text-danger pl-1"></small>
                         </p>
                     </div>
                     <div class="col-6">
-                        <label for="id-error" class="form-label">Search</label>
-                        <input type="text" class="form-control" id="order-search"/>
-                        <p>
-                            <small id="order-search-error" class="text-danger pl-1"></small>
-                        </p>
-                    </div>
-                    <div class="col-6">
                         <label for="date" class="form-label">Date</label>
-                        <input type="date" class="form-control" id="date"/>
+                        <input type="date" class="form-control" id="date" name="Dte"/>
                     </div>
                     <div class="col-6">
                         <label for="cusID" class="form-label">Customer ID</label>
@@ -734,6 +727,7 @@
                                 class="form-control"
                                 id="cash"
                                 placeholder=""
+                                name="Cost"
                         />
                         <p>
                             <small id="credit-error" class="text-danger pl-1"></small>
@@ -746,6 +740,7 @@
                                 class="form-control"
                                 id="discount"
                                 placeholder=""
+                                name="Dis"
                         />
                         <p>
                             <small id="discount-error" class="text-danger pl-1"></small>
@@ -758,6 +753,7 @@
                                 class="form-control"
                                 id="balance"
                                 placeholder=""
+                                name="Bal"
                         />
                     </div>
                     <div class="col-12">

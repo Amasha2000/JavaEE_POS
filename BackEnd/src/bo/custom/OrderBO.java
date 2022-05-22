@@ -14,5 +14,5 @@ public interface OrderBO extends SuperBO {
     boolean deleteOrder(String id,Connection connection) throws SQLException, ClassNotFoundException;
     OrderDTO search(String id, Connection connection) throws SQLException, ClassNotFoundException;
     ArrayList<ItemDTO> getAllItems(Connection connection) throws SQLException, ClassNotFoundException;
-    String getOrderId();
+    String getOrderId(Connection connection);
 }
