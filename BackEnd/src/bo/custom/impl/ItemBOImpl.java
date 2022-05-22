@@ -47,7 +47,8 @@ public class ItemBOImpl implements ItemBO {
     }
 
     @Override
-    public ArrayList<String> getAllItemCode() {
-        return null;
+    public ArrayList<String> getAllItemCode(Connection connection) throws SQLException, ClassNotFoundException {
+        ArrayList<String> allItemCode = itemDAO.getAllItemCode(connection);
+        return allItemCode;
     }
 }

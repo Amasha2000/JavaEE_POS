@@ -41,10 +41,9 @@ function saveCustomer() {
                         //Remove Table Details when double click the row
                         removeTableRows();
 
+                        //populate customer drop down list
+                        populateCustomerDropDown();
                     }
-
-                    //populate customer drop down list
-                    //populateCustomerDropDown();
                 },
                 error: function (ob, textStatus, error) {
                     alert(textStatus);
@@ -145,8 +144,8 @@ function deleteCustomer() {
                        //Remove Table Details when double click the row
                        removeTableRows();
 
-                       //populate customer drop down list
-                       //populateCustomerDropDown();
+                      // populate customer drop down list
+                       populateCustomerDropDown();
                    }else if(res.status==400){
                        alert(res.data);
                    }else{
@@ -206,7 +205,6 @@ function searchCustomer(id) {
 
                 responseSearchCustomer = true;
             }
-
 
         },
         error:function(ob,state){

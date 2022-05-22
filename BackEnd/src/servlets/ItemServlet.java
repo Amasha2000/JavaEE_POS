@@ -86,6 +86,22 @@ public class ItemServlet extends HttpServlet {
                     writer.print(response.build());
                     break;
 
+                case "GETID":
+                    ArrayList<String> allIds = itemBO.getAllItemCode(connection);
+
+                    JsonArrayBuilder arrayBuilderId = Json.createArrayBuilder();
+
+                    for (String ids:allIds){
+                        arrayBuilderId.add(ids);
+                    }
+
+                    JsonObjectBuilder responseId = Json.createObjectBuilder();
+                    responseId.add("status", 200);
+                    responseId.add("message", "Done");
+                    responseId.add("data", arrayBuilderId.build());
+                    writer.print(responseId.build());
+                    break;
+
             }
             connection.close();
         } catch (SQLException | ClassNotFoundException throwables) {

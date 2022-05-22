@@ -44,7 +44,12 @@ public class ItemDAOImpl implements ItemDAO {
 
 
     @Override
-    public ArrayList<String> getAllItemCode() {
-        return null;
+    public ArrayList<String> getAllItemCode(Connection connection) throws SQLException, ClassNotFoundException {
+        ArrayList<String> allIds=new ArrayList<>();
+        ResultSet resultSet = CrudUtil.executeQuery("SELECT code FROM item", connection);
+        while (resultSet.next()){
+            allIds.add(resultSet.getString("code"));
+        }
+        return allIds;
     }
 }

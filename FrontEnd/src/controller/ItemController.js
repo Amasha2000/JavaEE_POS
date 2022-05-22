@@ -39,7 +39,7 @@ function saveItem() {
                     removeItemTableRows();
 
                     //populate item drop down list
-                    // populateItemDropDown();
+                     populateItemDropDown();
 
                 }
             },
@@ -148,7 +148,7 @@ function deleteItem() {
                     removeItemTableRows();
 
                     //populate item drop down list
-                    //populateItemDropDown();
+                    populateItemDropDown();
 
                 }else if(res.status==400){
                     alert(res.data);
