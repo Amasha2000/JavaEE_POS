@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public interface CustomerBO extends SuperBO {
     boolean addCustomer(CustomerDTO customerDTO, Connection connection) throws SQLException, ClassNotFoundException;
-    boolean updateCustomer(CustomerDTO customerDTO);
-    boolean deleteCustomer(CustomerDTO customerDTO);
+    boolean updateCustomer(CustomerDTO customerDTO, Connection connection) throws SQLException, ClassNotFoundException;
+    boolean deleteCustomer(String id,Connection connection) throws SQLException, ClassNotFoundException;
     CustomerDTO search(String id);
     ArrayList<CustomerDTO> getAllCustomers(Connection connection) throws SQLException, ClassNotFoundException;
 }

@@ -1,6 +1,7 @@
 package bo.custom.impl;
 
 import bo.custom.CustomerBO;
+import dao.CrudUtil;
 import dao.DAOFactory;
 import dao.custom.CustomerDAO;
 import dto.CustomerDTO;
@@ -18,13 +19,13 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public boolean updateCustomer(CustomerDTO customerDTO) {
-        return false;
+    public boolean updateCustomer(CustomerDTO customerDTO, Connection connection) throws SQLException, ClassNotFoundException {
+        return customerDAO.update(new Customer(customerDTO.getCustomerID(),customerDTO.getCustomerName(),customerDTO.getCustomerAddress(),customerDTO.getCustomerTeleNumber()),connection);
     }
 
     @Override
-    public boolean deleteCustomer(CustomerDTO customerDTO) {
-        return false;
+    public boolean deleteCustomer(String id,Connection connection) throws SQLException, ClassNotFoundException {
+        return customerDAO.delete(id,connection);
     }
 
     @Override

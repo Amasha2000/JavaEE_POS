@@ -1,3 +1,5 @@
+loadCustomerDetailsToTable();
+
 //--------------------------------------------Save Customer-------------------------------------------------------------
 $('#button-save-customer').click(function () {
     saveCustomer();
@@ -7,56 +9,51 @@ function saveCustomer() {
     $('#customer-table tbody tr').off();
 
     if (confirm('Do you want to Save Customer Details?')) {
-
-        var customerForm = $("#customerForm").serialize();
-
-        $.ajax({
-            url:"http://localhost:8080/BackEnd_Web_exploded/customer",
-            method:"POST",
-            data:customerForm,
-            success:function (res){
-                if(res.status==200){
-
-                   alert(res.message);
-
-                  //  Load Customer Details To Table
-                   loadCustomerDetailsToTable();
-
-                    //clear Input Fields
-                    clearAll();
-
-                    //Load Table Details To Input Fields
-                    loadCustomerDetailsToInputFields();
-
-                    //Remove Table Details when double click the row
-                    removeTableRows();
-
-                }
-
-                //populate customer drop down list
-                //populateCustomerDropDown();
-            },
-            error:function (ob,textStatus,error){
-                alert(textStatus)
-                console.log("wro")
-
-            }
-        });
-
-
-        // var response = searchCustomer(customerId);
+        //  searchCustomer($("#cus-id"));
         //
-        // if (response != undefined) {
-        //     swal("The Customer already exists", "warning");
+        // if (responseSearchCustomer) {
+        //     alert("The Customer already exists", "warning");
         //     //clear Input Fields
         //     clearAll();
         //
-        // } else {
-        //
-        //     var customerObject = new CustomerDTO(customerId, customerName, customerAddress, customerTeleNum);
-        //
-        //     customerArray.push(customerObject);
-        // }
+        //  } else {
+
+            var customerForm = $("#customerForm").serialize();
+
+            $.ajax({
+                url: "http://localhost:8080/BackEnd_Web_exploded/customer",
+                method: "POST",
+                data: customerForm,
+                success: function (res) {
+                    if (res.status == 200) {
+
+                        alert(res.message);
+
+                        // Load Customer Details To Table
+                        loadCustomerDetailsToTable();
+
+                        //clear Input Fields
+                        clearAll();
+
+                        //Load Table Details To Input Fields
+                        loadCustomerDetailsToInputFields();
+
+                        //Remove Table Details when double click the row
+                        removeTableRows();
+
+                    }
+
+                    //populate customer drop down list
+                    //populateCustomerDropDown();
+                },
+                error: function (ob, textStatus, error) {
+                    alert(textStatus)
+                    console.log("wro")
+
+                }
+            });
+
+        //}
     } else {
         //clear Input Fields
         clearAll();
@@ -111,11 +108,6 @@ function updateCustomer() {
                }
 
             });
-            // response.setCustomerId($("#cus-id").val());
-            // response.setCustomerName($("#cus-name").val());
-            // response.setCustomerAddress($("#cus-address").val());
-            // response.setCustomerTeleNumber($("#tel-num").val());
-
 
         // } else {
         //     swal("Add Customer Details To Update!!!", "warning");
@@ -138,7 +130,7 @@ function deleteCustomer() {
         // if (response != undefined) {
            var cusId=$("#cus-id").val();
            $.ajax({
-               url:"http://localhost:8080/BackEnd/customer?CustomerID="+cusId,
+               url:"http://localhost:8080/BackEnd_Web_exploded/customer?CustomerID="+cusId,
                method:"DELETE",
                success:function (res){
                    if(res.status==200){
@@ -156,7 +148,7 @@ function deleteCustomer() {
                        removeTableRows();
 
                        //populate customer drop down list
-                       populateCustomerDropDown();
+                       //populateCustomerDropDown();
                    }else if(res.status==400){
                        alert(res.data);
                    }else{
@@ -178,36 +170,54 @@ function deleteCustomer() {
     }
 }
 
-// //---------------------------------------------Search customer----------------------------------------------------------
-// $('#customer-search-button').on('click', function () {
-//     var cusId = $('#cus-search').val();
-//     var responseSearchCustomer = searchCustomer(cusId);
-//     if (responseSearchCustomer) {
-//         $('#cus-id').val(responseSearchCustomer.getCustomerId());
-//         $('#cus-name').val(responseSearchCustomer.getCustomerName());
-//         $('#cus-address').val(responseSearchCustomer.getCustomerAddress());
-//         $('#tel-num').val(responseSearchCustomer.getCustomerTeleNumber());
-//         $('#cus-search').val('');
-//
-//         //Load Table Details To Input Fields
-//         loadCustomerDetailsToInputFields();
-//
-//         //Remove Table Details when double click the row
-//         removeTableRows();
-//     } else {
-//         $('#cus-search').val('');
-//         swal('No such a Customer', "info");
-//     }
-// });
-//
-// function searchCustomer(id) {
-//     for (let i = 0; i < customerArray.length; i++) {
-//         if (customerArray[i].getCustomerId() == id) {
-//             return customerArray[i];
-//         }
-//     }
-// }
-//
+//---------------------------------------------Search customer----------------------------------------------------------
+var responseSearchCustomer=true;
+$('#customer-search-button').on('click', function () {
+    var cusId = $('#cus-search').val();
+    searchCustomer(cusId);
+    console.log(responseSearchCustomer);
+
+    if (responseSearchCustomer) {
+        alert("Done");
+    }else{
+        $('#cus-search').val('');
+        alert('No such a Customer', "info");
+    }
+});
+
+function searchCustomer(id) {
+    $.ajax({
+        url: "http://localhost:8080/BackEnd_Web_exploded/customer?option=SEARCH&CustomerID="+id,
+        method:"GET",
+        success:function (resp){
+            if (resp.status == 200) {
+                for (var i = 0; i < resp.data.length; i++) {
+                    $('#cus-id').val(resp.data[i].id);
+                    $('#cus-name').val(resp.data[i].name);
+                    $('#cus-address').val(resp.data[i].address);
+                    $('#tel-num').val(resp.data[i].teleNumber);
+                }
+
+                $('#cus-search').val('');
+
+                //Load Table Details To Input Fields
+                loadCustomerDetailsToInputFields();
+
+                //Remove Table Details when double click the row
+                removeTableRows();
+
+                responseSearchCustomer = true;
+            }
+
+
+        },
+        error:function(ob,state){
+            console.log(ob,state);
+            responseSearchCustomer=false;
+        }
+    });
+}
+
 //-----------------------------------------load customer details to table-----------------------------------------------
 function loadCustomerDetailsToTable() {
     $('#customer-table tbody').empty();
@@ -353,11 +363,7 @@ $('#cus-id').keydown(function (event) {
 
     if (event.key == 'Control') {
         var cusId = $('#cus-id').val();
-        var responseId = searchCustomer(cusId);
-        $('#cus-id').val(responseId.getCustomerId());
-        $('#cus-name').val(responseId.getCustomerName());
-        $('#cus-address').val(responseId.getCustomerAddress());
-        $('#tel-num').val(responseId.getCustomerTeleNumber());
+        searchCustomer(cusId);
     }
 });
 
