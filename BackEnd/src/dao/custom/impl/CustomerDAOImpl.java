@@ -47,7 +47,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public String getCustomerId() {
+    public ArrayList<String> getAllCustomerId() {
         return null;
     }
 }

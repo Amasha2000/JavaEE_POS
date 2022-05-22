@@ -42,8 +42,9 @@ public class ItemDAOImpl implements ItemDAO {
         return allItems;
     }
 
+
     @Override
-    public String getItemCode() {
+    public ArrayList<String> getAllItemCode() {
         return null;
     }
 }
