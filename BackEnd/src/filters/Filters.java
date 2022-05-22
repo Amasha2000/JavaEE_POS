@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = "/customer")
+@WebFilter(urlPatterns = "/*")
 public class Filters implements Filter {
 
     public Filters(){}

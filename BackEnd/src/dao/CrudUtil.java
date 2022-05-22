@@ -1,6 +1,5 @@
 package dao;
 
-import servlets.CustomerServlet;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

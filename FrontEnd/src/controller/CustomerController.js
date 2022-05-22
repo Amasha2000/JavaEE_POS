@@ -47,9 +47,7 @@ function saveCustomer() {
                     //populateCustomerDropDown();
                 },
                 error: function (ob, textStatus, error) {
-                    alert(textStatus)
-                    console.log("wro")
-
+                    alert(textStatus);
                 }
             });
 

@@ -1,7 +1,6 @@
 package bo.custom.impl;
 
 import bo.custom.CustomerBO;
-import dao.CrudUtil;
 import dao.DAOFactory;
 import dao.custom.CustomerDAO;
 import dto.CustomerDTO;
@@ -29,8 +28,9 @@ public class CustomerBOImpl implements CustomerBO {
     }
 
     @Override
-    public CustomerDTO search(String id) {
-        return null;
+    public CustomerDTO search(String id, Connection connection) throws SQLException, ClassNotFoundException {
+        Customer search = customerDAO.search(id, connection);
+        return new CustomerDTO(search.getCustomerID(), search.getCustomerName(),search.getCustomerAddress(),search.getCustomerTeleNumber());
     }
 
     @Override

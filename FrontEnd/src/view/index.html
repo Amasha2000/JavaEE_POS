@@ -395,10 +395,10 @@
     <section id="item-container" class="container-fluid">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-7 col-xxl-7">
-                <form>
+                <form id="itemForm">
                     <div class="col-12">
                         <label for="item-code" class="form-label">Item Code</label>
-                        <input type="text" class="form-control" id="item-code"/>
+                        <input type="text" class="form-control" id="item-code" name="ItemCode"/>
                         <p><small id="code-error" class="text-danger pl-1"></small></p>
                     </div>
                     <div class="col-12">
@@ -408,6 +408,7 @@
                                 class="form-control"
                                 id="item-name"
                                 placeholder=""
+                                name="ItemName"
                         />
                         <p>
                             <small id="item-name-error" class="text-danger pl-1"></small>
@@ -420,6 +421,7 @@
                                 class="form-control"
                                 id="item-quantity"
                                 placeholder=""
+                                name="Quantity"
                         />
                         <p>
                             <small
@@ -435,6 +437,7 @@
                                 class="form-control"
                                 id="item-price"
                                 placeholder=""
+                                name="Price"
                         />
                         <p>
                             <small id="item-price-error" class="text-danger pl-1"></small>
@@ -789,6 +792,7 @@
 <script src="../assets/js/bootstrap.min.js"></script>
 <script src="../assets/jQuery/jquery-3.6.0.min.js"></script>
 <script src="../controller/CustomerController.js"></script>
+<script src="../controller/ItemController.js"></script>
 <!--<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>-->
 <script>
     document

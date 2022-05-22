@@ -15,8 +15,6 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -87,26 +85,22 @@ public class CustomerServlet extends HttpServlet {
         switch (option){
             case "SEARCH":
                 String customerID = req.getParameter("CustomerID");
-                PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM customer WHERE id=?");
-                preparedStatement.setObject(1,customerID);
-                ResultSet resultSet = preparedStatement.executeQuery();
+                CustomerDTO customer=customerBO.search(customerID,connection);
 
                 JsonArrayBuilder arrayBuilder1 = Json.createArrayBuilder();
 
-                while (resultSet.next()){
+                        String cusId = customer.getCustomerID();
+                        String customerName = customer.getCustomerName();
+                        String customerAddress = customer.getCustomerAddress();
+                        String customerTeleNumber = customer.getCustomerTeleNumber();
 
-                        String id = resultSet.getString("id");
-                        String name = resultSet.getString("name");
-                        String address = resultSet.getString("address");
-                        String teleNumber = resultSet.getString("teleNumber");
+                        JsonObjectBuilder objectBuilder1 = Json.createObjectBuilder();
+                        objectBuilder1.add("id",cusId);
+                        objectBuilder1.add("name",customerName);
+                        objectBuilder1.add("address",customerAddress);
+                        objectBuilder1.add("teleNumber",customerTeleNumber);
+                        arrayBuilder1.add(objectBuilder1.build());
 
-                        JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
-                        objectBuilder.add("id",id);
-                        objectBuilder.add("name",name);
-                        objectBuilder.add("address",address);
-                        objectBuilder.add("teleNumber",teleNumber);
-                        arrayBuilder1.add(objectBuilder.build());
-                    }
                     JsonObjectBuilder response1 = Json.createObjectBuilder();
                     response1.add("status", 200);
                     response1.add("message", "Done");
