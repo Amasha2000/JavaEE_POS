@@ -5,6 +5,7 @@ import bo.custom.ItemBO;
 import bo.custom.OrderBO;
 import dto.ItemDTO;
 import dto.OrderDTO;
+import dto.OrderDetailDTO;
 import entity.OrderDetail;
 
 import javax.annotation.Resource;
@@ -69,7 +70,7 @@ public class OrderServlet extends HttpServlet {
         String cusId = "C00-001";//As an example
         String orderId = req.getParameter("OId");
         String date = "2022-05-22";//As an example
-        ArrayList<OrderDetail> details=new ArrayList<>();
+        ArrayList<OrderDetailDTO> details=new ArrayList<>();
 
         OrderDTO orderDTO = new OrderDTO(orderId,cusId, date, cost,details);
 

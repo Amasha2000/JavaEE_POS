@@ -139,7 +139,6 @@ function createAutoID() {
 
 //check if the quantity is sufficient
 function checkSufficientQuantity() {
-    ;
     $("#quantity").on('keyup', function () {
         if ($("#quantityOnHand").val() >= $("#quantity").val() && regExItemQuantity.test($("#quantity").val())) {
             $('#quantity').css('border', '3px solid green');
@@ -162,6 +161,7 @@ $("#btnAddItem").on("click", function () {
      var unitPrice = $("#price").val();
      var qty = $("#quantity").val();
      var totalPrice = (qty * unitPrice).toFixed(2);
+     var qtyOnHand=$("#quantityOnHand").val();
 
      var item={
         "code":code,
@@ -169,10 +169,42 @@ $("#btnAddItem").on("click", function () {
         "unitPrice":unitPrice,
         "qty" :qty,
         "tot":totalPrice
-    }
+     }
+
+    // var updatedItem={
+    //     itemCode:code,
+    //     itemName:name,
+    //     qty:+qtyOnHand - +qty,
+    //     price:unitPrice
+    // }
+    //
+    // $.ajax({
+    //     url: "http://localhost:8080/BackEnd_Web_exploded/item",
+    //     method:"PUT",
+    //     contentType: "application.json",
+    //     data: JSON.stringify(updatedItem),
+    //     success:function (res) {
+    //         if (res.status == 200) {
+    //
+    //             //Load Item Details To Table
+    //             loadItemDetailsToTable();
+    //
+    //             getSelectedItem();
+    //
+    //         } else if (res.status == 400) {
+    //             alert(res.message);
+    //         } else {
+    //             alert(res.data)
+    //         }
+    //     },
+    //     error: function (ob, status, t) {
+    //         alert(ob);
+    //     }
+    // });
 
 
-     if(cartArray.length!=0) {
+
+    if(cartArray.length!=0) {
          var resp= searchCart(code);
         if(resp) {
                     let totalQty = +(resp.qty) + +qty;
@@ -206,7 +238,7 @@ $("#btnAddItem").on("click", function () {
 
             // let searchItemResponse = searchItem(code);
         }
-        }else {
+        }else{
          cartArray.push(item);
          loadCartDetailsToTable();
          // searchItemResponse.setQuantity(+searchItemResponse.getQuantity() - +qty);
