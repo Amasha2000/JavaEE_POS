@@ -124,17 +124,19 @@ function itemSearch(id){
 
 //set order ID automatically
 
+$("#orderID").val("O00-001");
+
 function createAutoID() {
-    $.ajax({
-        url:"http://localhost:8080/BackEnd_Web_exploded/order?option=GETID",
-        method:"GET",
-        success:function (resp){
-            $("#orderID").val(resp.data);
-        },
-        error:function(ob,state){
-            console.log(ob,state);
-        }
-    });
+    // $.ajax({
+    //     url:"http://localhost:8080/BackEnd_Web_exploded/order?option=GETID",
+    //     method:"GET",
+    //     success:function (resp){
+    //         $("#orderID").val(resp.data);
+    //     },
+    //     error:function(ob,state){
+    //         console.log(ob,state);
+    //     }
+    // });
 }
 
 //check if the quantity is sufficient
@@ -337,21 +339,34 @@ $("#btn-purchase").on("click", function () {
         );
         $("#credit-error").text('');
 
-        var bill = $("#bill").serialize();
-        var oId=$("#orderId").val();
-        var date=$("#date").val();
+
+        var oId=$("#orderID").val();
+        var cusId = $("#customer").val();
+        var date = $("#date").val();
+        var discount = $("#discount").val();
+        var total = $("#total").text();
+
+        var order={
+            "oId":oId,
+            "cusId":cusId,
+            "date":date,
+            "discount":discount,
+            "total":total,
+            "cart":cartArray
+        }
 
         $.ajax({
-            url: "http://localhost:8080/BackEnd_Web_exploded/order&OId="+oId,
+            url: "http://localhost:8080/BackEnd_Web_exploded/order",
             method: "POST",
-            data: bill,
+            contentType:"application/json",
+            data: JSON.stringify(order),
             success: function (res) {
                 if (res.status == 200) {
 
                     //alert(res.message);
-                    swal("Order Placed Successfully", "success");
+                    alert("Order Placed Successfully", "success");
                     clearOrderDetail();
-                    createAutoID();
+                    //createAutoID();
                 }
             },
             error: function (ob, textStatus, error) {
@@ -363,9 +378,9 @@ $("#btn-purchase").on("click", function () {
 
 //clear data
 function clearOrderDetail() {
-    $('#customer,#name,#address,#telNum,#item,#itemName,#quantityOnHand,#price,#cash,#discount,#balance').val('');
+    $('#orderID,#customer,#name,#address,#telNum,#item,#itemName,#quantityOnHand,#price,#cash,#discount,#balance').val('');
     $('#total,#sub-total').text('');
-    $('#customer,#name,#address,#telNum,#item,#itemName,#quantityOnHand,#price,#discount,#quantity').css(
+    $('#orderID,#customer,#name,#address,#telNum,#item,#itemName,#quantityOnHand,#price,#discount,#quantity').css(
         'border',
         'solid 2px #ced4da'
     );
@@ -504,7 +519,7 @@ function validateOrderID() {
         $('#order-error').text('');
     } else {
         $('#orderID').css('border', '3px solid red');
-        $('#order-error').text("Wrong... format :I00-000");
+        $('#order-error').text("Wrong... format :O00-000");
     }
 }
 

@@ -20,15 +20,18 @@ public class OrderBOImpl implements OrderBO {
 
     @Override
     public boolean addOrder(OrderDTO orderDTO, Connection connection) throws SQLException, ClassNotFoundException {
+
         connection.setAutoCommit(false);
+
         Order order=new Order(orderDTO.getOrderId(),orderDTO.getCusId(),orderDTO.getDate(),orderDTO.getCost());
         boolean added=orderDAO.add(order,connection);
+
+
         if(!added){
             connection.rollback();
             connection.setAutoCommit(true);
             return false;
-
-        }else{
+        }
             for(OrderDetailDTO orderDetailDTO:orderDTO.getDetailList()){
                 OrderDetail orderDetail=new OrderDetail(orderDetailDTO.getItemCode(),orderDetailDTO.getOrderId(),orderDetailDTO.getDiscount(),orderDetailDTO.getCost());
                 boolean add = orderDetailDAO.add(orderDetail, connection);
@@ -37,8 +40,10 @@ public class OrderBOImpl implements OrderBO {
                     connection.setAutoCommit(true);
                     return false;
                 }
-            }
         }
+
+        connection.commit();
+        connection.setAutoCommit(true);
         return true;
     }
 

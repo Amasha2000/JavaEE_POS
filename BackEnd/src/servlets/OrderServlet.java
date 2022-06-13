@@ -9,9 +9,7 @@ import dto.OrderDetailDTO;
 import entity.OrderDetail;
 
 import javax.annotation.Resource;
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObjectBuilder;
+import javax.json.*;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -66,18 +64,35 @@ public class OrderServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        double cost = Double.parseDouble( req.getParameter("Cost"));
-        String cusId = "C00-001";//As an example
-        String orderId = req.getParameter("OId");
-        String date = "2022-05-22";//As an example
-        ArrayList<OrderDetailDTO> details=new ArrayList<>();
+        JsonReader reader = Json.createReader(req.getReader());
 
-        OrderDTO orderDTO = new OrderDTO(orderId,cusId, date, cost,details);
-
-        PrintWriter writer = resp.getWriter();
+        JsonObject jsonObject = reader.readObject();
 
         resp.setContentType("application/json");
+        PrintWriter writer = resp.getWriter();
 
+        String oId = jsonObject.getString("oId");
+        String cusId = jsonObject.getString("cusId");
+        String date = jsonObject.getString("date");
+        String price = jsonObject.getString("total");
+        String discount = jsonObject.getString("discount");
+        JsonArray cartDetail=jsonObject.getJsonArray("cart");
+
+        ArrayList<OrderDetailDTO> dtos=new ArrayList<>();
+
+        for(int i=0;i<cartDetail.size();i++){
+            JsonObject detailJsonObject = cartDetail.getJsonObject(i);
+
+            String code = detailJsonObject.getString("code");
+//            String name = detailJsonObject.getString("name");
+//            String unitPrice = detailJsonObject.getString("unitPrice");
+//            String quantity = detailJsonObject.getString("qty");
+            String total = detailJsonObject.getString("tot");
+
+            dtos.add(new OrderDetailDTO(code,oId,Double.parseDouble( discount),Double.parseDouble(total)));
+        }
+
+        OrderDTO orderDTO = new OrderDTO(oId, cusId, date, Double.parseDouble(price), dtos);
         try {
             Connection connection = ds.getConnection();
             boolean b = orderBO.addOrder(orderDTO,connection);

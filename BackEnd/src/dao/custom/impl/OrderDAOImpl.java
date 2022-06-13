@@ -12,7 +12,7 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public boolean add(Order order, Connection connection) throws SQLException, ClassNotFoundException {
-        return CrudUtil.executeUpdate("INSERT INTO `Order` VALUES(?,?,?,?)",connection,order.getOrderId(),order.getCusId(),order.getDate(),order.getCost());
+          return CrudUtil.executeUpdate("INSERT INTO `Order` VALUES(?,?,?,?)",connection,order.getOrderId(),order.getCusId(),order.getDate(),order.getCost());
     }
 
     @Override
